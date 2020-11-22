@@ -1,5 +1,7 @@
 from django.views.generic.base import TemplateView
 from django.apps import apps
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class Home(TemplateView):
@@ -14,3 +16,7 @@ class Home(TemplateView):
                 dictVerbose[app.label] = app.verbose_name
         context['verbose_dict'] = dictVerbose
         return context
+
+
+def home(request):
+    return HttpResponseRedirect(reverse('posts:index'))
